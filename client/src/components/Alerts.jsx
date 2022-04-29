@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import io from "socket.io-client";
 
-const URL = 'http://localhost:8080/';
+const URL = 'https://donations-crypto.herokuapp.com/';
 const socket = io.connect(URL);
 
 

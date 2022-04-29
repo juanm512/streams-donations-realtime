@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-const URLFrontEnd = 'http://localhost:3000/';
-const URL = 'http://localhost:8080/';
+const URLFrontEnd = window.location.origin;
+const URL = 'https://donations-crypto.herokuapp.com/';
 
 const Profile = () => {
     const [ name, setname ] = React.useState(null);
@@ -168,8 +168,8 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto md:w-2/3">
                             <div className="form-control">
                                 <div className="input-group">
-                                    <input type="text" value={URLFrontEnd+"donatelo/"+donationInfo.shareLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
-                                    <button onClick={()=>{const link = URLFrontEnd+"donatelo/"+donationInfo.shareLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
+                                    <input type="text" value={URLFrontEnd+"/donatelo/"+donationInfo.shareLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
+                                    <button onClick={()=>{const link = URLFrontEnd+"/donatelo/"+donationInfo.shareLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
                                     <i className="fa-regular fa-copy"></i>
                                     </button>
                                 </div>
@@ -184,8 +184,8 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto md:w-2/3">
                             <div className="form-control">
                                 <div className="input-group">
-                                    <input type="text" value={URLFrontEnd+"alerts/"+donationInfo.alertsLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
-                                    <button onClick={()=>{const link = URLFrontEnd+"alerts/"+donationInfo.alertsLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
+                                    <input type="text" value={URLFrontEnd+"/alerts/"+donationInfo.alertsLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
+                                    <button onClick={()=>{const link = URLFrontEnd+"/alerts/"+donationInfo.alertsLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
                                     <i className="fa-regular fa-copy"></i>
                                     </button>
                                 </div>

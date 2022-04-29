@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React from "react";
 import { ethers } from "ethers";
-import {handleNewChain, getNetworkAndChainId, isMetaMaskInstalled, isMetaMaskConnected, makePayment} from '../payments.js';
+import {handleNewChain, getNetworkAndChainId, isMetaMaskInstalled} from '../payments.js';
 import axios from "axios";
 import io from "socket.io-client";
 import Swal from 'sweetalert2';
@@ -10,7 +10,7 @@ const MySwal = withReactContent(Swal);
 
 
 
-const URL = 'http://localhost:8080/';
+const URL = 'https://donations-crypto.herokuapp.com/';
 const socket = io.connect(URL);
 
 const Streamer = () => {
@@ -51,7 +51,7 @@ const Streamer = () => {
     };
 
     const sendAlert = () => {
-        const nick = nickname || "Anonymous" ;
+        const nick = nickname || "anonymous" ;
         const amountTo = amount ;
         let data = { nick, amount: amountTo }
         let room = donationSettings.shareLink;
@@ -75,7 +75,7 @@ const Streamer = () => {
                 // const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
                 // const signer = provider.getSigner();
                 // const publicAddress = (await provider.send("eth_requestAccounts", []))[0];
-            await makePayment( donationSettings.wallet, 0.001 )
+            await makePayment( donationSettings.wallet, amount )
 
             // }
           
