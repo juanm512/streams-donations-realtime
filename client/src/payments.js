@@ -62,7 +62,7 @@ const MySwal = withReactContent(Swal);
             const chainId = await window.ethereum.request({
                 method: 'eth_chainId',
             })
-            handleNewChain(chainId);
+            // handleNewChain(chainId);
             return(chainId);
         } catch (err) {
             console.error(err)

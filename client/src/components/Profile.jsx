@@ -1,5 +1,10 @@
 import React from "react";
 import axios from "axios";
+import UseValidator from "../hooks/useValidator";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
+
 
 const URLFrontEnd = window.location.origin;
 const URL = 'https://donations-crypto.herokuapp.com/';
@@ -19,6 +24,12 @@ const Profile = () => {
     const [ token, setToken ] = React.useState();
 
     React.useEffect(() => {
+        MySwal.fire({
+            title: 'Loading data...',
+            onBeforeOpen: () => {
+                MySwal.showLoading()
+            }
+        })
         const tokenLS = localStorage.getItem('token');
         if (tokenLS !== "undefined" && tokenLS != null) {
             setToken(tokenLS);
@@ -67,6 +78,7 @@ const Profile = () => {
             }
         })
         .then(res => {
+            MySwal.close();
             if (res.data.status === "success") {
                 setDonationInfo(res.data.donationsInfo[0]);
                 setname(res.data.donationsInfo[0].name);
@@ -103,7 +115,97 @@ const Profile = () => {
             instagram: data.instagram.value,
         }
 
+        if(newData.name === "" || newData.wallet === "" || newData.description === "" || newData.imageURL === "" || newData.minimumAmount === "" || newData.twitch === "" || newData.youtube === "" || newData.twitter === "" || newData.instagram === ""){
+            MySwal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Please fill all the fields!',
+                timer: 2000
+            })
+            return;
+        }
 
+        if(!UseValidator("text", newData.name)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid name',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("textarea", newData.description)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid description',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("number", newData.minimumAmount)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid minimum amount',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.imageURL)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid image URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.twitch) && !newData.twitch.includes("twitch.tv")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid twitch URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.youtube) && !newData.youtube.includes("youtube.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid youtube URL',
+                timer: 2000
+            })
+            return;
+        }
+
+
+        if(!UseValidator("url", newData.twitter) && !newData.twitter.includes("twitter.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid twitter URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.instagram) && !newData.instagram.includes("instagram.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid instagram URL',
+                timer: 2000
+            })
+            return;
+        }
+        
         axios({
             url: URL + 'profile-settings',
             method: 'PUT',
@@ -112,6 +214,12 @@ const Profile = () => {
         .then(res => {
             if (res.data.status === "success") {
                 setDonationInfo(newData);
+                MySwal.fire({
+                    type: 'success',
+                    title: 'Success!',
+                    text: 'Your profile has been updated!',
+                    timer: 2000
+                })
             }
         })
         .catch(err => {
@@ -137,6 +245,96 @@ const Profile = () => {
             instagram: data.instagram.value,
         }
 
+        if(newData.name === "" || newData.wallet === "" || newData.description === "" || newData.imageURL === "" || newData.minimumAmount === "" || newData.twitch === "" || newData.youtube === "" || newData.twitter === "" || newData.instagram === ""){
+            MySwal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Please fill all the fields!',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("text", newData.name)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid name',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("textarea", newData.description)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid description',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("number", newData.minimumAmount)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid minimum amount',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.imageURL)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid image URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.twitch) && newData.twitch.includes("twitch.tv")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid twitch URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.youtube) && newData.youtube.includes("youtube.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid youtube URL',
+                timer: 2000
+            })
+            return;
+        }
+
+
+        if(!UseValidator("url", newData.twitter) && newData.twitter.includes("twitter.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid twitter URL',
+                timer: 2000
+            })
+            return;
+        }
+
+        if(!UseValidator("url", newData.instagram) && newData.instagram.includes("instagram.com")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid instagram URL',
+                timer: 2000
+            })
+            return;
+        }
 
         axios({
             url: URL + 'profile-settings',
@@ -146,6 +344,13 @@ const Profile = () => {
         .then(res => {
             if (res.data.status === "success") {
                 setDonationInfo(newData);
+                MySwal.fire({
+                    type: 'success',
+                    title: 'Success!',
+                    text: 'Your profile has been updated and we have created your links!',
+                    timer: 2000
+                })
+
             }
         })
         .catch(err => {
@@ -168,9 +373,12 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto md:w-2/3">
                             <div className="form-control">
                                 <div className="input-group">
+                                    <a href={URLFrontEnd+"/donatelo/"+donationInfo.shareLink} target="_blank" rel="noreferrer" className="p-0 btn btn-square tooltip tooltip-right" data-tip="Open in a new tab">
+                                    <i className="fa-solid fa-square-up-right p-2 text-xl"></i>
+                                    </a>
                                     <input type="text" value={URLFrontEnd+"/donatelo/"+donationInfo.shareLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
                                     <button onClick={()=>{const link = URLFrontEnd+"/donatelo/"+donationInfo.shareLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
-                                    <i className="fa-regular fa-copy"></i>
+                                    <i className="fa-regular fa-copy text-xl"></i>
                                     </button>
                                 </div>
                             </div>
@@ -184,9 +392,12 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto md:w-2/3">
                             <div className="form-control">
                                 <div className="input-group">
+                                    <a href={URLFrontEnd+"/alerts/"+donationInfo.alertsLink} target="_blank" rel="noreferrer" className="btn btn-square tooltip tooltip-right" data-tip="Open in a new tab">
+                                    <i className="fa-solid fa-square-up-right p-2 text-xl"></i>
+                                    </a>
                                     <input type="text" value={URLFrontEnd+"/alerts/"+donationInfo.alertsLink} className="rounded-lg border-transparent flex-1 appearance-none border w-full py-2 px-4  text-gray-700 shadow-sm text-base " disabled readOnly />
                                     <button onClick={()=>{const link = URLFrontEnd+"/alerts/"+donationInfo.alertsLink;navigator.clipboard.writeText(link)}} className="btn btn-square tooltip tooltip-left " data-tip="Copy to clipboard">
-                                    <i className="fa-regular fa-copy"></i>
+                                    <i className="fa-regular fa-copy text-xl"></i>
                                     </button>
                                 </div>
                             </div>
@@ -278,7 +489,7 @@ const Profile = () => {
                             <hr/>
                             <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                                 <h2 className="max-w-sm mx-auto md:w-1/3">
-                                    Twitch channel handler (without the '#' or '@')
+                                    Twitch channel URL
                                 </h2>
                                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                     <div>
@@ -291,7 +502,7 @@ const Profile = () => {
                             <hr/>
                             <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                                 <h2 className="max-w-sm mx-auto md:w-1/3">
-                                    Twitter handler (without the '#' or '@')
+                                    Twitter URL
                                 </h2>
                                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                     <div>
@@ -304,7 +515,7 @@ const Profile = () => {
                             <hr/>
                             <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                                 <h2 className="max-w-sm mx-auto md:w-1/3">
-                                    Instagram handler (without the '#' or '@')
+                                    Instagram URL
                                 </h2>
                                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                     <div>
@@ -317,7 +528,7 @@ const Profile = () => {
                             <hr/>
                             <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                                 <h2 className="max-w-sm mx-auto md:w-1/3">
-                                    Youtube handler (without the '#' or '@')
+                                    Youtube URL
                                 </h2>
                                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                     <div>
@@ -372,7 +583,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="imageURL" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                                        <input type="text" name="imageURL" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Enter a gif URL from internet"/>
                                     </div>
                                 </div>  
                             </div>
@@ -385,7 +596,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                    <textarea name="description" className="textarea textarea-bordered rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Bio"></textarea>
+                                    <textarea name="description" className="textarea textarea-bordered rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Description here"></textarea>
                                     </div>
                                 </div>  
                             </div>
@@ -393,7 +604,7 @@ const Profile = () => {
                         <hr/>
                         <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                             <h2 className="max-w-sm mx-auto md:w-1/3">
-                                Minimum amount for the alerts
+                                Minimum amount for the alerts (USD)
                             </h2>
                             <div className="max-w-sm mx-auto space-y-2 md:w-2/3">
                                 <div>
@@ -418,12 +629,12 @@ const Profile = () => {
                         <hr/>
                         <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                             <h2 className="max-w-sm mx-auto md:w-1/3">
-                                Twitch channel handler (without the '#' or '@')
+                                Twitch channel URL
                             </h2>
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="twitch" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                                        <input type="text" name="twitch" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Twitch URL"/>
                                     </div>
                                 </div>  
                             </div>
@@ -431,12 +642,12 @@ const Profile = () => {
                         <hr/>
                         <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                             <h2 className="max-w-sm mx-auto md:w-1/3">
-                                Twitter handler (without the '#' or '@')
+                                Twitter URL
                             </h2>
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="twitter" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                                        <input type="text" name="twitter" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Twitter URL"/>
                                     </div>
                                 </div>  
                             </div>
@@ -444,12 +655,12 @@ const Profile = () => {
                         <hr/>
                         <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                             <h2 className="max-w-sm mx-auto md:w-1/3">
-                                Instagram handler (without the '#' or '@')
+                                Instagram URL
                             </h2>
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="instagram" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                                        <input type="text" name="instagram" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Instagram URL"/>
                                     </div>
                                 </div>  
                             </div>
@@ -457,12 +668,12 @@ const Profile = () => {
                         <hr/>
                         <div className="items-center w-full p-4 space-y-4 text-gray-300 md:inline-flex md:space-y-0">
                             <h2 className="max-w-sm mx-auto md:w-1/3">
-                                Youtube handler (without the '#' or '@')
+                                Youtube URL
                             </h2>
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="youtube" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                                        <input type="text" name="youtube" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Youtube URL"/>
                                     </div>
                                 </div>  
                             </div>

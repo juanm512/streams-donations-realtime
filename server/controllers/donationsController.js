@@ -96,8 +96,20 @@ const getDonationInfo = async (req, res) => {
     console.log(req.params)
     let uuid = req.params.uuid;
     DonationLink.findOne({shareLink: uuid})
-    .then( async (donationSettings) => {
-        if (donationSettings){
+    .then( async (donation) => {
+        if (donation){
+            let donationSettings = {
+                name: donation.name,
+                wallet: donation.wallet,
+                shareLink: donation.shareLink,
+                description: donation.description,
+                imageURL: donation.imageURL,
+                minimumAmount: donation.minimumAmount,
+                twitch: donation.twitch,
+                youtube: donation.youtube,
+                twitter: donation.twitter,
+                instagram: donation.instagram,
+            }
             console.log("donations controller: ", donationSettings)
             return res.json({status: 'success', donationSettings});
         }else{

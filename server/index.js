@@ -14,7 +14,8 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors([
     {
-      origin: "https://candid-macaron-aebaff.netlify.app", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+      origin: process.env.FRONTEND_LINK || "http://localhost:3000", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+      // origin: "http://localhost:3000", //servidor que deseas que consuma o (*) en caso que sea acceso libre
       credentials: true
     }
   ]
@@ -31,7 +32,10 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send(`
+    <h1>You are locking for Donatelo page?</h1>
+    <a href="${process.env.FRONTEND_LINK}">Go there ${process.env.FRONTEND_LINK}</a>
+  `);
 });
 
 // init all web routes
@@ -42,7 +46,8 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://candid-macaron-aebaff.netlify.app",
+    origin: process.env.FRONTEND_LINK || "http://localhost:3000",
+    // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -61,8 +66,5 @@ io.on("connection", (socket) => {
 });
 const uri = process.env.MONGODB_URI || "mongodb+srv://donationsWeb3:W2UjDkinh5g5dAXv@donations.wzxn6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => server.listen(process.env.PORT || 8080, () => console.log(`Server Running on Port: http://localhost:${process.env.PORT || 3000}`)))
+  .then(() => server.listen(process.env.PORT || 5000, () => console.log(`Server Running on Port: http://localhost:${process.env.PORT || 5000}`)))
   .catch((error) => console.log(`${error} did not connect`));
-
-// mongoose.set('useFindAndModify', false);
-
