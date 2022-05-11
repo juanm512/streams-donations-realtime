@@ -18,5 +18,39 @@ const Home = () => {
         </div>
     );
 }
-
+{/* <div class="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-auto p-8">
+  <a href="#" class="basis-full sm:basis-1/2 md:basis-1/3 relative mt-8 ml-4 inline-block bg-[#9147ff] group">
+    <img 
+    src="https://static-cdn.jtvnw.net/previews-ttv/live_user_duendepablo-440x248.jpg" 
+    class="w-full h-auto block relative duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10" 
+    alt="" />
+    <div class="m-2 px-2 rounded-md absolute top-0 left-0 text-white tracking-wide font-semibold text-sm bg-[#ff1515e2] duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10">
+      LIVE
+    </div>
+    <div class="w-[8px] h-[8px] absolute top-0 left-0 bg-[#9147ff] origin-top-left duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+    <div class="w-[8px] h-[8px] absolute bottom-0 right-0 bg-[#9147ff] origin-bottom-left duration-200 group-hover:translate-x-[2.5px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+  </a>
+  <a href="#" class="basis-full sm:basis-1/2 md:basis-1/3 relative mt-8 ml-4 inline-block bg-[#9147ff] group">
+    <img 
+    src="https://static-cdn.jtvnw.net/previews-ttv/live_user_duendepablo-440x248.jpg" 
+    class="w-full h-auto block relative duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10" 
+    alt="" />
+    <div class="m-2 px-2 rounded-md absolute top-0 left-0 text-white tracking-wide font-semibold text-sm bg-[#6c6b6be2] duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10">
+      OFFLINE
+    </div>
+    <div class="w-[8px] h-[8px] absolute top-0 left-0 bg-[#9147ff] origin-top-left duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+    <div class="w-[8px] h-[8px] absolute bottom-0 right-0 bg-[#9147ff] origin-bottom-left duration-200 group-hover:translate-x-[2.5px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+  </a>
+  <a href="#" class="basis-full sm:basis-1/2 md:basis-1/3 relative mt-8 ml-4 inline-block bg-[#9147ff] group">
+    <img 
+    src="https://static-cdn.jtvnw.net/previews-ttv/live_user_duendepablo-440x248.jpg" 
+    class="w-full h-auto block relative duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10" 
+    alt="" />
+    <div class="m-2 px-2 rounded-md absolute top-0 left-0 text-white tracking-wide font-semibold text-sm bg-[#6c6b6be2] duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10">
+      OFFLINE
+    </div>
+    <div class="w-[8px] h-[8px] absolute top-0 left-0 bg-[#9147ff] origin-top-left duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+    <div class="w-[8px] h-[8px] absolute bottom-0 right-0 bg-[#9147ff] origin-bottom-left duration-200 group-hover:translate-x-[2.5px] group-hover:translate-y-[-6px] group-hover:rotate-45 z-0"></div>
+  </a>
+</div> */}
 export default Home;
