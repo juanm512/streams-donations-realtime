@@ -41,8 +41,8 @@ const MySwal = withReactContent(Swal);
     };
 })();
 
-// const URL = 'https://donations-crypto.herokuapp.com/';
-const URL = 'http://localhost:5000/';
+const URL = 'https://donations-crypto.herokuapp.com/';
+// const URL = 'http://localhost:5000/';
 const socket = io.connect(URL);
 
 const Streamer = () => {

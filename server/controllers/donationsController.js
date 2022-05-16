@@ -132,10 +132,25 @@ const getAlertsInfo = async (req, res) => {
     });
 }
 
+const getStreamers = async (req, res) => {
+    try{
+        const streamers = await DonationLink.find({}, 'twitch');
+        streamers.forEach( async (streamer) => {
+            streamer.connected = false;
+        });
+        return res.json({status: 'success', streamers});
+    }
+    catch(error){
+        console.log(error)
+        return res.json({status: 'error', msg: 'Error getting streamers'});
+    }
+}
+
 
 module.exports = {
     createLinks: createLinks,
     updateLinks:updateLinks,
     getDonationInfo: getDonationInfo,
     getAlertsInfo: getAlertsInfo,
+    getStreamers: getStreamers
 };

@@ -37,7 +37,8 @@ let initWebRoutes = (app) => {
     router.put('/profile-settings', checkJWT, donationsController.updateLinks);
     router.get('/donations/:uuid', donationsController.getDonationInfo);
     router.get('/alerts/:uuid', donationsController.getAlertsInfo);
-
+    
+    router.get('/streamers', donationsController.getStreamers);
 
     //parte del login-registro-account-logout
     //log in

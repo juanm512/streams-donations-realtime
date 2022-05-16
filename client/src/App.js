@@ -11,7 +11,6 @@ import Alerts from "./components/Alerts";
 import "./App.css";
 
 function App() {
-
   return (
     <main className="dark:bg-gray-800 bg-white relative h-screen">
       
@@ -19,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-            <Header />
+            <Header route={"homepage"} />
             <Home />
             </>
           } />
@@ -30,13 +29,13 @@ function App() {
           } />
           <Route path="/login" element={
             <>
-              <Header />
+              <Header route={"login"} />
               <LogIn />
             </>
           } />
           <Route path="/profile" element={
             <>
-              <Header />
+              <Header route={"profile"} />
               <Profile />
             </>
           } />

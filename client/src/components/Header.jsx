@@ -10,7 +10,7 @@ const URL = 'https://donations-crypto.herokuapp.com/';
 const MySwal = withReactContent(Swal);
 
 
-const Header = () => {
+const Header = ( { route } ) => {
     const [ connected, setConnected ] = React.useState(false);
     const [ user, setUser ] = React.useState(null);
     const [ token, setToken ] = React.useState();
@@ -98,6 +98,7 @@ const Header = () => {
     }
 
     return (
+        route !== "homepage" ? (
         <header className="navbar bg-base-100">
             <div className="navbar-start">
                 <Link to="/" className="btn btn-ghost normal-case text-xl w-24 md:w-56 left">
@@ -109,24 +110,12 @@ const Header = () => {
                     <span className="invisible sm:visible">Donatelo</span>
                 </Link>
             </div>
-            {/* <div className="navbar-center">
-            <div className="input-group">
-                <input type="text" placeholder="Search…" className="input input-bordered" />
-                <button className="btn btn-square">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                </button>
-            </div>
-            </div> */}
             <div className="navbar-end gap-2">
                 {connected  ? (
                     <div className="dropdown dropdown-end">
-                        <label tabIndex="0" className="w-24 md:w-full btn btn-ghost">
-                            <Link to="/profile" className="truncate" >{ user }</Link>
-                        </label>
-                        {/* <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li><Link to="/profile" >Profile</Link></li>
-                            <li><button onClick={handleLogout} >Logout</button></li>
-                        </ul> */}
+                        <Link tabIndex="0" to="/profile" className="w-24 md:w-full btn btn-ghost truncate" >
+                            { user }
+                        </Link>
                     </div>
                 ) : (
                     <div>
@@ -140,6 +129,31 @@ const Header = () => {
                 )}
             </div>
         </header>
+        ) : (
+            <header className="absolute top-0 bg-transparent navbar md:pr-8 z-10">
+            <div className="navbar-start">
+            </div>
+
+            <div className="navbar-end gap-2 ">
+                {connected  ? (
+                    <div className="dropdown dropdown-end">
+                        <Link tabIndex="0" to="/profile" className="w-24 md:w-full btn btn-ghost truncate" >
+                            { user }
+                        </Link>
+                    </div>
+                ) : (
+                    <div>
+                        <button className="btn btn-ghost normal-case text-xl" onClick={handleLogin} >
+                            Log in 
+                            <div className="w-10 rounded-full ml-2">
+                                <img src="https://img.icons8.com/color/48/000000/metamask-logo.png" alt="icons8 Metamask"/>
+                            </div>
+                        </button>
+                    </div>
+                )}
+            </div>
+        </header>
+        )
     );
 };
 
