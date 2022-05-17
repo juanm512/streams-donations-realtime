@@ -72,16 +72,14 @@ const Header = ( { route } ) => {
             
             if( result && result.data.status === 'success' ){
                 setToken(result.data.cookie.jwt);
-                MySwal.fire({
+                await MySwal.fire({
                     title: 'You are connected successfully',
                     text: 'Address: ' + publicAddress,
                     icon:'success',
-                    willClose: () => {
-                        setUser({wallet: publicAddress});
-                        setConnected(true);
-                    },
                     timer: '3000',
                 })
+                setUser(publicAddress);
+                setConnected(true);
             }else{
                 setToken(null);
                 throw new Error('Error');

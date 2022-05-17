@@ -13,8 +13,8 @@ function fy(array){
   }
 };
 
-const URL = 'http://localhost:5000/';
-// const URL = 'https://donations-crypto.herokuapp.com/';
+// const URL = 'http://localhost:5000/';
+const URL = 'https://donations-crypto.herokuapp.com/';
 
 const Overlay = forwardRef(({ caption, scroll }, ref) => {
   const [streamers, setStreamers] = React.useState([]);
@@ -46,6 +46,8 @@ const Overlay = forwardRef(({ caption, scroll }, ref) => {
     fy(streamers);
 
     for( let i = 0; i < 3; i++ ){
+      streamers[i].name = streamers[i].twitch.split("twitch.tv/")[1];
+      console.log(streamers[i].name)
       await fetch(`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamers[i].name}-440x248.jpg`)
       .then(function(response) {
           console.log(response);
@@ -110,7 +112,7 @@ const Overlay = forwardRef(({ caption, scroll }, ref) => {
             {
               streamers.map( (streamer, index) => {
                 return (
-                  <a rel="noreferrer" target="_blank" href={"https://twitch.tv/"+streamer.name} className="basis-full sm:basis-1/2 md:basis-1/3 relative mt-8 ml-4 inline-block bg-[#9147ff] group">
+                  <a key={streamer.name} rel="noreferrer" target="_blank" href={"https://twitch.tv/"+streamer.name} className="basis-full sm:basis-1/2 md:basis-1/3 relative mt-8 ml-4 inline-block bg-[#9147ff] group">
                     <img 
                     src={`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamer.name}-440x248.jpg`}
                     className="w-full h-auto block relative duration-200 group-hover:translate-x-[6px] group-hover:translate-y-[-6px] z-10" 

@@ -7,6 +7,7 @@ const MySwal = withReactContent(Swal);
 
 
 const URLFrontEnd = window.location.origin;
+// const URL = 'http://localhost:5000/';
 const URL = 'https://donations-crypto.herokuapp.com/';
 
 const Profile = () => {
@@ -350,7 +351,7 @@ const Profile = () => {
                     text: 'Your profile has been updated and we have created your links!',
                     timer: 2000
                 })
-
+                window.location.reload();
             }
         })
         .catch(err => {
@@ -634,7 +635,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="twitch" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Twitch URL"/>
+                                        <input type="text" name="twitch" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="https://twitch.tv/YOUR_USERNAME" value="https://twitch.tv/USERNAME"/>
                                     </div>
                                 </div>  
                             </div>
@@ -647,7 +648,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="twitter" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Twitter URL"/>
+                                        <input type="text" name="twitter" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="https://twitter.com/YOUR_USERNAME" value="https://twitter.com/USERNAME"/>
                                     </div>
                                 </div>  
                             </div>
@@ -660,7 +661,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="instagram" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Instagram URL"/>
+                                        <input type="text" name="instagram" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="https://instagram.com/YOUR_USERNAME" value="https://instagram.com/USERNAME"/>
                                     </div>
                                 </div>  
                             </div>
@@ -673,7 +674,7 @@ const Profile = () => {
                             <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                                 <div>
                                     <div className=" relative ">
-                                        <input type="text" name="youtube" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Youtube URL"/>
+                                        <input type="text" name="youtube" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="https://youtube.com/c/YOUR_USERNAME" value="https://youtube.com/c/USERNAME"/>
                                     </div>
                                 </div>  
                             </div>

@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors([
     {
       origin: process.env.FRONTEND_LINK || "http://localhost:3000", //servidor que deseas que consuma o (*) en caso que sea acceso libre
-      // origin: "http://localhost:3000", //servidor que deseas que consuma o (*) en caso que sea acceso libre
       credentials: true
     }
   ]
@@ -47,7 +46,6 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: process.env.FRONTEND_LINK || "http://localhost:3000",
-    // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });

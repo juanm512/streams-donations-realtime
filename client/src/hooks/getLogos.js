@@ -24,7 +24,7 @@ const getLogos = (name) => {
         case 'RON':
             return <RonLogo width="30px" />
         case 'SLP':
-            return <SlpLogo width="30px" />
+            return <SlpLogo width="28px" />
         case 'USDC':
             return <UsdcLogo width="30px" />
         case 'USDT':
