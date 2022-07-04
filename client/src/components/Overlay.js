@@ -1,6 +1,12 @@
 import React, { forwardRef } from "react";
 import axios from "axios";
 
+import ronin from "../img/ronin.png"
+import bsc from "../img/bsc.png"
+import polygon from "../img/polygon.png"
+import stream_room from "../img/stream-room.png"
+import channels from "../img/channels.png"
+
 function fy(array){
   var count = array.length,
   randomnumber,
@@ -75,37 +81,42 @@ const Overlay = forwardRef(({ caption, scroll }, ref) => {
       caption.current.innerText = (scroll.current.toFixed(2) * 100).toString().length <= 3 ? scroll.current.toFixed(2) * 100 + "%" : (scroll.current.toFixed(2) * 100).toString().substring(0,3).replace(".","") + "%"
     }}
     className="scroll">
-    <div style={{ height: "400vh" }}>
+    <div style={{ height: "200vh", background: "rgb(83, 55, 229) " }}>
+      <img src={stream_room} alt="stream_room_bg" height="100%" width={"100%"} style={{position: "absolute"}}/>
       <div className="dot md:w-2/5 font-bold">
         <h1>Donate with Crypto</h1>
-        Virtual reality (VR) is a simulated experience that can be similar to or completely different from the real world.
+        A simple way to accept donations on different chains, can be shown in stream.
+        <br/>
+        Sign in and create your profile!
       </div>
     </div>
-    <div style={{ height: "200vh" }}>
+    <div style={{ height: "200vh", background: "#efd512" }}>
       <div className="dot">
         <h1>Binance Smart Chain</h1>
-        Headphones are a pair of small loudspeaker drivers worn on or around the head over a user's ears.
+        At Binance Smart Chain you can accept BNB, BUSD, USDT and USDC.
       </div>
+      <img loading="lazy" src={bsc} alt="bsc_bg" height="100%" width={"100%"}/>
     </div>
-    <div style={{ height: "200vh" }}>
+    <div style={{ height: "200vh", background: "#b144fa"}}>
       <div className="dot">
-        <h1>Polygon Chain</h1>A rocket (from Italian: rocchetto, lit. 'bobbin/spool')[nb 1][1] is a projectile that spacecraft, aircraft or other
-        vehicle use to obtain thrust from a rocket engine.
+        <h1>Polygon Chain</h1>At Polygon Chain you can receive MATIC, BUSD, USDT and USDC.
       </div>
+      <img loading="lazy" src={polygon} alt="polygon_bg" height="100%" width={"100%"}/>
     </div>
-    <div style={{ height: "200vh" }}>
+    <div style={{ height: "200vh", background: "#465cf5" }}>
       <div className="dot">
-        <h1>Ronin Chain</h1>A turbine (/ˈtɜːrbaɪn/ or /ˈtɜːrbɪn/) (from the Greek τύρβη, tyrbē, or Latin turbo, meaning vortex)[1][2] is a
-        rotary mechanical device that extracts energy from a fluid flow and converts it into useful work.
+        <h1>Ronin Chain</h1>In this Blockchain you can accept RON, AXS, WETH, USDC and SLP.
       </div>
+      <img loading="lazy" src={ronin} alt="ronin_bg" height="100%" width={"100%"}/>
     </div>
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", background: "rgb(rgb(31, 41, 55))" }}>
       <div className="dot w-full">
         <h1>Tune some channel</h1>
       </div>
     </div>
 
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", background: "rgb(31, 41, 55)" }}>
+      <img loading="lazy" src={channels} alt="channels_bg" height="100%" width={"100%"} style={{position: "absolute"}}/>
       {
         (streamers.length > 0 && error === null) ? (
           <div className="dot2 grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto py-8">

@@ -1,3 +1,4 @@
+/* Importing the App component from the App.js file. */
 import App from "./App";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";

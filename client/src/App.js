@@ -4,7 +4,6 @@ import React from 'react';
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Streamer from "./components/Streamer";
-import LogIn from "./components/LogIn";
 import Profile from "./components/Profile";
 import Alerts from "./components/Alerts";
 
@@ -25,12 +24,6 @@ function App() {
           <Route path="/donatelo/:uuid" element={
             <>
             <Streamer />
-            </>
-          } />
-          <Route path="/login" element={
-            <>
-              <Header route={"login"} />
-              <LogIn />
             </>
           } />
           <Route path="/profile" element={

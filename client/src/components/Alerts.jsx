@@ -3,11 +3,6 @@ import React from "react";
 import axios from "axios";
 import io from "socket.io-client";
 
-// const scriptE = document.createElement("script");
-// scriptE.src = "https://code.responsivevoice.org/responsivevoice.js?key=Ys0ZdP89";
-// document.body.appendChild(scriptE.cloneNode(true));
-// "https://code.responsivevoice.org/responsivevoice.js?key=Ys0ZdP89";
-
 const URL = 'https://donations-crypto.herokuapp.com/';
 // const URL = 'http://localhost:5000/';
 const socket = io.connect(URL);
